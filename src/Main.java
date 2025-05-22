@@ -1,22 +1,16 @@
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-
-        try(FileOutputStream fileOutputStream = new FileOutputStream("person.txt",true)){
-            System.out.print("[+] Write anything to file: ");
-            String data = new Scanner(System.in).nextLine() + "\n";
-            fileOutputStream.write(data.getBytes(StandardCharsets.UTF_8));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        try{
+            convertJpgToPng("durian.jpg");
+        }catch (RuntimeException e){
+            System.out.println(e.getMessage());
         }
-
-        try (FileInputStream fileInputStream = new FileInputStream("person.txt")){
-            for (byte b : fileInputStream.readAllBytes()){
-                System.out.print((char) b);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
     }
 
     public static void convertJpgToPng(String fileName){
