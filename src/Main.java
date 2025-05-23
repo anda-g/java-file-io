@@ -53,6 +53,24 @@ public class Main {
         }
     }
 
+    public static void createJavaFile(){
+        Path path = Paths.get("C:\\Users\\User\\Desktop\\Main.java");
+        String javaCode = """
+                public class Main{
+                    public static void main(String[] args) {
+                        System.out.println("Hello World");
+                    }
+                }""";
+        try{
+            Files.createFile(path);
+            OutputStream fileOutputStream = Files.newOutputStream(path, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+            fileOutputStream.write(javaCode.getBytes(StandardCharsets.UTF_8));
+            System.out.println("File Created");
+            fileOutputStream.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
     public static void convertJpgToPng(String fileName){
         try(FileInputStream fileInputStream = new FileInputStream(fileName)){
             String newFileName = fileName.substring(0, fileName.lastIndexOf('.')) + ".png";
