@@ -134,6 +134,26 @@ public class Main {
         }
     }
 
+    public static void workWithFileClass(){
+        File file = new File("person.txt");
+        try{
+            if(file.createNewFile()){
+                myLog("File created");
+            }
+            System.out.print("[+] Renaming file: [ ");
+            for (int i = 0; i <30; i++) {
+                Thread.sleep(100);
+                System.out.print("\b=>");
+            }
+            System.out.println("\b]");
+            if(file.renameTo(new File("people.txt"))){
+                myLog("Renamed successfully");
+            }
+        }catch (Exception e){
+            myLog(e.getMessage());
+        }
+    }
+
     public static void myLog(String message){
         System.out.println(Date.from(Instant.now()) + "\tMESSAGE: " + message);
     }
