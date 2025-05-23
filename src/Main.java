@@ -13,6 +13,46 @@ public class Main {
         }
     }
 
+    public static void createFile(){
+        Path path = Paths.get("person.excel");
+        try{
+            Files.createFile(path);
+            System.out.println("File Created");
+        }catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void createDirectory(){
+        Path path = Paths.get("my-folder");
+        try{
+            Files.createDirectory(path);
+            System.out.println("Directory Created");
+        }catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void renameFile(){
+        Path path = Paths.get("person.csv");
+        Path targetPath = Paths.get("person.excel");
+        try{
+            Files.move(path, targetPath);
+        }catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void moveFile(){
+        Path path = Paths.get("person.excel");
+        Path targetPath = Paths.get("D:\\person.excel");
+        try{
+            Files.move(path, targetPath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static void convertJpgToPng(String fileName){
         try(FileInputStream fileInputStream = new FileInputStream(fileName)){
             String newFileName = fileName.substring(0, fileName.lastIndexOf('.')) + ".png";
