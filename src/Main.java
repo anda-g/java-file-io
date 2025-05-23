@@ -97,6 +97,47 @@ public class Main {
         }
     }
 
+    public static void javaWithDirectory(){
+        Path directoryPath = Paths.get("C:\\Users\\User\\Desktop\\code");
+        Path filePath = Paths.get("C:\\Users\\User\\Desktop\\code\\Main.java");
+
+        String importToCode = """
+                public class Main{
+                    public static void main(String[] args){
+                        System.out.println("Hello World");
+                    }
+                }""";
+
+        try{
+//            Delete the existing directory and file
+            if(Files.deleteIfExists(filePath)){
+                myLog("Deleted existing file");
+            }
+            if (Files.deleteIfExists(directoryPath)){
+                myLog("Deleted existing directory");
+            }
+
+//            Create a new directory and file
+            Files.createDirectory(directoryPath);
+            myLog("Directory created");
+            Files.createFile(filePath);
+            myLog("File Created");
+
+            OutputStream fileStream = Files.newOutputStream(filePath, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+            myLog("Connected to file");
+            fileStream.write(importToCode.getBytes(StandardCharsets.UTF_8));
+            myLog("Code imported to file");
+            fileStream.close();
+            myLog("File Closed");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void myLog(String message){
+        System.out.println(Date.from(Instant.now()) + "\tMESSAGE: " + message);
+    }
+
     public static void readFromFile(){
         try (FileInputStream fileInputStream = new FileInputStream("person.txt")){
 //            for (byte b : fileInputStream.readAllBytes()){
