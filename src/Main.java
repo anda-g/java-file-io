@@ -1,16 +1,13 @@
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.*;
+import java.time.Instant;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        try{
-            convertJpgToPng("durian.jpg");
-        }catch (RuntimeException e){
-            System.out.println(e.getMessage());
-        }
+        workWithFileClass();
     }
 
     public static void createFile(){
