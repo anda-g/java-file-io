@@ -10,6 +10,21 @@ public class Main {
         workWithFileClass();
     }
 
+    public static void standardRenameFile(String fileName){
+        String newFileName = UUID.randomUUID()  + fileName.substring(fileName.lastIndexOf('.'));
+        try(BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(fileName))) {
+            try (BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(newFileName))) {
+                int buffer;
+                while ((buffer = bufferedInputStream.read()) != -1){
+                    bufferedOutputStream.write((byte) buffer);
+                }
+                System.out.println("Read and write to new file successfully 😊 : " + newFileName);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static void createFile(){
         Path path = Paths.get("person.excel");
         try{
