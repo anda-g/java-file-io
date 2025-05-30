@@ -1,16 +1,23 @@
+import java.awt.*;
 import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.time.Instant;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class Main {
     public static void main(String[] args) {
-        workWithFileClass();
+        standardRenameFile("durian.png");
+        String[] str = new String[10];
     }
 
     public static void standardRenameFile(String fileName){
+        String path = System.getProperty("user.dir");
         String newFileName = UUID.randomUUID()  + fileName.substring(fileName.lastIndexOf('.'));
         try(BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(fileName))) {
             try (BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(newFileName))) {
